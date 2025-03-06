@@ -1,3 +1,11 @@
 .custom-offcanvas {
     width: 65% !important;
 }
+.dropdown-toggle::after {
+    display: none !important; 
+}
+
+#custom-feature-dropdown {
+    text-decoration: none;
+    color: hsl(0, 0%, 41%);
+}

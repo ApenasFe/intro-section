@@ -12,13 +12,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 export default function Home() {
+  //Offcanvas
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+  //Dropdown Features
+  const [showFeatureDropdown, setShowFeatureDropdown] = useState(false);
+  const [featureArrowIcon, setFeatureArrowIcon] = useState('/images/icon-arrow-down.svg');
 
+  const handleToggleFeatureDropdown = (isOpen) => {
+    setShowFeatureDropdown(isOpen);
+      setFeatureArrowIcon(isOpen ? '/images/icon-arrow-up.svg' : '/images/icon-arrow-down.svg');
+  };
+
+  //Dropdown Company
+  const [showCompanyDropdown, setShowCompanyDropdown] = useState(false);
+  const [companyArrowIcon, setCompanyArrowIcon] = useState('/images/icon-arrow-down.svg');
+
+  const handleToggleCompanyDropdown = (isOpen) => {
+    setShowCompanyDropdown(isOpen);
+      setCompanyArrowIcon(isOpen ? '/images/icon-arrow-up.svg' : '/images/icon-arrow-down.svg');
+  };
+  
   return (
-    //Container Pincipal
+    //Container Principal
     <Container fluid className="vw-100 vh-100">
       
       <Row className='flex-column vw-100'>
@@ -45,21 +63,38 @@ export default function Home() {
                 <Offcanvas.Body>
                   <Row className='flex-column w-100'>
                     <Col>
-                      <Dropdown>
-                        <Dropdown.Toggle variant='link' id="custom-feature-dropdown">
-                          Features
+                      <Dropdown show={showFeatureDropdown} onToggle={handleToggleFeatureDropdown}>
+                        <Dropdown.Toggle variant='link' className='d-flex flex-row align-items-center' id="custom-feature-dropdown">
+                          <div className='me-2'>Features</div>
+                          <div id='custom-feature-arrow'><img src={featureArrowIcon}></img></div>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                          <Dropdown.Item href="#/action-1">Todo List</Dropdown.Item>
+                          <Dropdown.Item href="#/action-2">Calendar</Dropdown.Item>
+                          <Dropdown.Item href="#/action-3">Reminders</Dropdown.Item>
+                          <Dropdown.Item href="#/action-3">Planning</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </Col>
-                    <Col>Item 2</Col>
-                    <Col>Item 3</Col>
-                    <Col>Item 4</Col>
+                    
+                    <Col>
+                      <Dropdown show={showCompanyDropdown} onToggle={handleToggleCompanyDropdown}>
+                        <Dropdown.Toggle variant='link' className='d-flex flex-row align-items-center' id="custom-feature-dropdown">
+                            <div className='me-2'>Company</div>
+                            <div id='custom-feature-arrow'><img src={companyArrowIcon}></img></div>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#/action-1">History</Dropdown.Item>
+                          <Dropdown.Item href="#/action-2">Our Team</Dropdown.Item>
+                          <Dropdown.Item href="#/action-3">Blog</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </Col>
+                    
+                    <Col>Careers</Col>
+                    <Col>About</Col>
                   </Row>
                 </Offcanvas.Body>
               
